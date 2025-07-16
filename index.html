@@ -135,16 +135,21 @@
             backdrop-filter: blur(4px);
         }
 
+        /* Section animation */
         .section {
             margin-bottom: 2.5rem;
             border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
             padding-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(20px);
-            animation: slideInUp 0.5s forwards;
+            animation: slideInUp 0.7s ease-out forwards; /* Slightly longer and smoother */
         }
 
         @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px); /* Start further down */
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -163,6 +168,11 @@
             border-radius: 5px;
             margin-bottom: 1rem;
             border: 1px solid rgba(0, 255, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+        }
+        .content-block:hover {
+            border-color: #00ff00; /* Green border on hover */
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4); /* Glow effect on hover */
         }
         
         .project-item {
@@ -185,12 +195,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); /* Initial subtle shadow */
         }
 
         .action-btn:hover {
             background-color: #000;
             color: #00ff00;
-            box-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 15px #00ff00; /* More pronounced glow on hover */
+            transform: translateY(-2px); /* Slight lift effect */
         }
         
         .troll-container {
@@ -215,6 +227,19 @@
             color: #00ff00;
             padding-right: 8px;
         }
+        /* Skill item animation */
+        .skill-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
         
         .site-footer {
             text-align: center;
@@ -231,7 +256,24 @@
         
         .social-icons a:hover {
             color: #fff;
+            transform: scale(1.2); /* Pop effect on hover */
+            text-shadow: 0 0 10px #00ff00; /* Glow on hover */
         }
+
+        /* Removed Title text shadow animation */
+        /* .text-shadow-glow {
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            }
+            to {
+                text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00, 0 0 25px #00ff00;
+            }
+        } */
 
     </style>
 </head>
@@ -250,11 +292,11 @@
                 <span class="cursor"></span>
             </div>
             <div class="flex justify-between items-center mt-4">
-                 <div class="flex space-x-2">
-                    <button id="enter-btn" class="action-btn">Enter</button>
-                    <button id="hint-btn" class="action-btn">Hint</button>
-                 </div>
-                 <p id="error-message" class="text-red-500"></p>
+                   <div class="flex space-x-2">
+                     <button id="enter-btn" class="action-btn">Enter</button>
+                     <button id="hint-btn" class="action-btn">Hint</button>
+                   </div>
+                   <p id="error-message" class="text-red-500"></p>
             </div>
             <div id="troll-container" class="troll-container">
                 <p id="troll-text"></p>
@@ -276,21 +318,21 @@
 
     <div id="main-content" class="main-content">
         <header class="text-center mb-8 section">
-            <h1 class="text-4xl font-bold text-shadow">Tejas Jagdale</h1>
+            <h1 class="text-4xl font-bold">Tejas Jagdale</h1> <!-- Removed text-shadow-glow class -->
             <p class="text-lg">AI & Machine Learning Engineer</p>
             <div class="flex justify-center flex-wrap space-x-4 mt-4">
-                <a href="mailto:hellotejasdata@gmail.com" class="hover:text-white"><i class="fas fa-envelope"></i> hellotejasdata@gmail.com</a>
-                <a href="tel:+919130867975" class="hover:text-white"><i class="fas fa-phone"></i> +91 9130867975</a>
+                <a href="mailto:hellotejasdata@gmail.com" class="hover:text-white hover:underline"><i class="fas fa-envelope"></i> hellotejasdata@gmail.com</a>
+                <a href="tel:+919130867975" class="hover:text-white hover:underline"><i class="fas fa-phone"></i> +91 9130867975</a>
             </div>
         </header>
 
         <section class="section">
             <h2 class="section-title">--// Technical Skills //--</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div><h3 class="font-bold">Languages</h3><ul><li>Python</li><li>R</li><li>SQL</li></ul></div>
-                <div><h3 class="font-bold">AI/ML/DL</h3><ul><li>Machine Learning</li><li>Deep Learning</li><li>Neural Networks</li><li>NLP</li><li>LLM / OLLAM</li><li>Computer Vision</li><li>YOLO</li></ul></div>
-                <div><h3 class="font-bold">Frameworks/Tools</h3><ul><li>Python/Numpy</li><li>LangSmith</li><li>PowerBI / Tableau</li><li>JIRA / SLACK</li><li>RESTful/OpenAI APIs</li></ul></div>
-                <div><h3 class="font-bold">Cloud & Data</h3><ul><li>Microsoft Azure</li><li>AWS / Google Cloud</li><li>Data Visualization</li><li>Data Warehouse/ETL</li><li>Database Management</li></ul></div>
+                <div><h3 class="font-bold">Languages</h3><ul><li class="skill-item">Python</li><li class="skill-item">SQL</li></ul></div>
+                <div><h3 class="font-bold">AI/ML/DL</h3><ul><li class="skill-item">Machine Learning</li><li class="skill-item">Deep Learning</li><li class="skill-item">NLP</li><li class="skill-item">LLM / OLLAM</li><li class="skill-item">Computer Vision</li><li class="skill-item">RAG</li></ul></div>
+                <div><h3 class="font-bold">Frameworks/Tools</h3><ul><li class="skill-item">Python/Numpy</li><li class="skill-item">LangChain/LangSmith</li><li class="skill-item">PowerBI / Tableau</li><li class="skill-item">JIRA / SLACK</li><li class="skill-item">N8n Automation</li><li class="skill-item">RESTful/OpenAI APIs</li></ul></div>
+                <div><h3 class="font-bold">Cloud & Data</h3><ul><li class="skill-item">Microsoft Azure</li><li class="skill-item">AWS / Google Cloud</li><li class="skill-item">Data Visualization</li><li class="skill-item">Data Warehouse/ETL</li><li class="skill-item">DBMS</li></ul></div>
             </div>
         </section>
 
@@ -300,36 +342,21 @@
                 <h3 class="text-xl font-bold">Full Time - Artificial Intelligence Engineer</h3>
                 <p class="italic">AssetCues Pvt Ltd, Pune (June 2024 - Present)</p>
                 <ul class="mt-2">
-                    <li>Leading a 6-person team to develop an AI model for asset recognition using OpenCV & YOLOv8 on Azure.</li>
-                    <li>Engineered a live chatbot with LangChain/LangSmith, deployed via Azure Kubernetes and Docker.</li>
-                    <li>Developed an AI validation model that reduced human error and accelerated asset entry by 70%.</li>
+                    <li>Held a hybrid role, contributing as a hands-on AI Engineer while also taking on product management responsibilities.</li>
+                    <li>Contributed to a 70% acceleration of the organization's core asset entry, validation, and audit pipeline through the integration of custom AI & ML tools.</li>
+                    <li>Developed and deployed computer vision models using YOLOv8 and OpenCV for asset identification and damage analysis.</li>
+                    <li>Engineered and launched a client-facing Chatbot using LangChain, enabling clients to query asset information and receive instant updates.</li>
+                    <li>Built and integrated an OCR-based invoice processing system that automated data extraction and validation, reducing manual entry errors by over 95%.</li>
                 </ul>
             </div>
             <div class="content-block">
-                <h3 class="text-xl font-bold">Internship - Data Analyst</h3>
-                <p class="italic">Afame Technology, Pune (April 2024 - May 2024)</p>
-                 <ul class="mt-2">
-                    <li>Crafted data metrics and business rules to enhance report accuracy and reliability.</li>
-                    <li>Utilized PowerBI, Excel, and Tableau to analyze data and identify flaws for correction.</li>
-                    <li>Provided expert training to operations teams, boosting productivity in managing production issues.</li>
-                </ul>
-            </div>
-             <div class="content-block">
                 <h3 class="text-xl font-bold">Internship - Data / Risk and Business Analyst</h3>
                 <p class="italic">TradeShala Pvt Limited, Pune (Dec 2023 - April 2024)</p>
-                 <ul class="mt-2">
-                    <li>Managed a portfolio of data analytics projects, ensuring alignment with business goals.</li>
-                    <li>Developed user stories and use cases for BI solutions to improve data-driven decision-making.</li>
-                    <li>Monitored project budgets and tracked expenses to ensure cost-effectiveness.</li>
-                </ul>
-            </div>
-             <div class="content-block">
-                <h3 class="text-xl font-bold">Internship - Database Engineer</h3>
-                <p class="italic">K J College of Engineering and Management Research, Pune (June 2023 - Dec 2023)</p>
-                 <ul class="mt-2">
-                    <li>Designed, implemented, and maintained complex, high-availability database architectures.</li>
-                    <li>Developed a web application for student attendance monitoring.</li>
-                    <li>Implemented robust backup, replication, and failover strategies to reduce data loss risk.</li>
+                   <ul class="mt-2">
+                    <li>Selected for a competitive internship focused on quantitative analysis.</li>
+                    <li>Developed data-centric frameworks to model risk and provide insights for business strategy.</li>
+                    <li>Developed user stories and use cases for BI solutions, improving data-driven decision-making.</li>
+                    <li>Monitored project budgets, tracked expenses, and prepared financial reports to ensure cost-effectiveness.</li>
                 </ul>
             </div>
         </section>
@@ -338,27 +365,49 @@
             <h2 class="section-title">--// Projects //--</h2>
             <div class="content-block">
                 <div class="project-item">
-                     <h3 class="text-xl font-bold">Image Classification with CNNs</h3>
-                     <p class="mt-1"><span class="text-yellow-400">Objective:</span> To accurately categorize images into 10 classes using a deep CNN.</p>
-                     <p class="mt-1"><span class="text-yellow-400">Tech Stack:</span> Python, TensorFlow, Keras, Docker, AWS.</p>
-                     <ul class="mt-1">
-                        <li>Utilized the CIFAR-10 dataset (60,000 32x32 color images).</li>
-                        <li>Designed and trained a deep CNN with multiple convolutional and pooling layers.</li>
-                        <li>Achieved a classification accuracy of 97%.</li>
-                        <li>Deployed the model as a scalable service using Docker and AWS.</li>
+                    <h3 class="text-xl font-bold">AI Powered Customer Support Email Generator</h3>
+                    <p class="mt-1"><span class="text-yellow-400">Objective:</span> To automate repetitive email drafting with high consistency and quality.</p>
+                    <p class="mt-1"><span class="text-yellow-400">Tech Stack:</span> GPT-4, Streamlit.</p>
+                    <ul class="mt-1">
+                        <li>Built a generative AI tool that converts brief customer issues into polished, professional email responses.</li>
+                        <li>Integrated tone customization (formal, friendly, apologetic) and optional language translation.</li>
+                        <li>Enhanced support team productivity by automating repetitive email drafting.</li>
                     </ul>
                 </div>
                 <div class="project-item">
-                    <h3 class="text-xl font-bold">E-commerce Recommender System</h3>
-                    <p class="mt-1">Developed a personalized product recommendation system to enhance user experience and sales. Implemented collaborative and content-based filtering techniques and deployed the system as a microservice using Docker and Kubernetes.</p>
+                    <h3 class="text-xl font-bold">Recommender System for E-commerce Platform</h3>
+                    <p class="mt-1"><span class="text-yellow-400">Objective:</span> To enhance user experience and increase sales through personalized product recommendations.</p>
+                    <p class="mt-1"><span class="text-yellow-400">Tech Stack:</span> Python, Collaborative Filtering, Content-Based Filtering.</p>
+                    <ul class="mt-1">
+                        <li>Developed a personalized product recommendation system.</li>
+                        <li>Analyzed user interaction data from a mock e-commerce dataset.</li>
+                        <li>Implemented both collaborative filtering and content-based filtering techniques.</li>
+                    </ul>
                 </div>
                 <div class="project-item">
-                    <h3 class="text-xl font-bold">House Price Prediction Analysis</h3>
-                    <p class="mt-1">Conducted an in-depth analysis of residential property data to uncover key price-influencing factors. Leveraged statistical methods and machine learning to predict housing prices and identify investment opportunities.</p>
+                    <h3 class="text-xl font-bold">Customer Complaint Ticket Classifier & Summarizer</h3>
+                    <p class="mt-1"><span class="text-yellow-400">Objective:</span> To automate customer support workflows for intelligent email classification and response generation.</p>
+                    <p class="mt-1"><span class="text-yellow-400">Tech Stack:</span> n8n, GPT-4, Gmail.</p>
+                    <ul class="mt-1">
+                        <li>Developed and deployed a suite of AI-powered customer support automation workflows.</li>
+                        <li>Enabled intelligent email classification, multilingual auto-replies, sentiment analysis, and SLA-based escalations.</li>
+                        <li>Integrated with tools like Gmail to streamline response generation, ticket routing, and complaint summarization.</li>
+                    </ul>
                 </div>
                 <div class="project-item">
-                    <h3 class="text-xl font-bold">Uber Data Analysis</h3>
-                    <p class="mt-1">Performed a comprehensive analysis of Uber trip data to derive actionable insights for optimizing driver efficiency and customer satisfaction. Visualized findings with Matplotlib and PowerBI to present clear recommendations.</p>
+                    <h3 class="text-xl font-bold">Image Classification using Convolutional Neural Networks (CNNs)</h3>
+                    <p class="mt-1"><span class="text-yellow-400">Objective:</span> To accurately identify and categorize images into predefined classes.</p>
+                    <p class="mt-1"><span class="text-yellow-400">Tech Stack:</span> TensorFlow, Keras, CIFAR-10 dataset.</p>
+                    <ul class="mt-1">
+                        <li>Developed an image classification model.</li>
+                        <li>Used the CIFAR-10 dataset consisting of 60,000 32x32 color images in 10 classes.</li>
+                        <li>Employed TensorFlow and Keras frameworks for building and training the CNN model.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <h3 class="text-xl font-bold">A Hybrid Machine Learning Framework for Proactive Phishing Threat Identification</h3>
+                    <p class="mt-1"><span class="text-yellow-400">Objective:</span> To proactively identify phishing threats using a hybrid ML framework.</p>
+                    <p class="mt-1"><span class="text-yellow-400">Publication:</span> Published in the International Journal for Research in AI & ML.</p>
                 </div>
             </div>
         </section>
@@ -375,6 +424,7 @@
                     <li>PowerBI Developer</li>
                     <li>Project Management Certificate</li>
                     <li>Scrum Agile Basic and Advance Certification</li>
+                    <li>Generative AI for Healthcare</li>
                 </ul>
             </div>
         </section>
@@ -383,12 +433,11 @@
             <h2 class="section-title">--// Education & Achievements //--</h2>
             <div class="content-block">
                 <h3 class="text-xl font-bold">Bachelor of Engineering, Computer Engineering</h3>
-                <p class="italic">Savitribai Phule Pune University (Graduated June 2024) - CGPA: 8.5</p>
+                <p class="italic">Savitribai Phule Pune University (Graduated June 2024) - CGPA: 8.5/10</p>
                 <ul class="mt-2">
                     <li>Vice President of Computer Student Association.</li>
-                    <li>Best Paper Award: International Journal for Research in AI & ML.</li>
-                    <li>Winner: National Level Math Olympiad (1 Lac INR Prize).</li>
-                    <li>Winner: National Level Robotics Competition at Zeal College.</li>
+                    <li>Received the award for Best Paper Publication in International Journal for Research in Artificial Intelligence & Machine Learning domain.</li>
+                    <li>Project: "A Hybrid Machine Learning Framework for Proactive Phishing Threat Identification," published in the International Journal for Research in AI & ML.</li>
                 </ul>
             </div>
         </section>
@@ -436,7 +485,16 @@
             { q: "Which command displays disk usage for filesystems in human-readable format?", a: "df -h", t: "There you go. My CPU usage spiked for a second, I thought you were going to ask me to center a div in CSS." },
             { q: "How do you compress the 'project' directory into 'project.tar.gz'?", a: "tar -czvf project.tar.gz project/", t: "Hint enabled. Just don't `rm -rf /` by accident. Or do, I'm not your sysadmin." },
             { q: "What command pipeline shows the top 5 largest files/directories here?", a: "du -ah . | sort -rh | head -n 5", t: "Okay, okay, here's the answer. My AI ethics module told me I have to be helpful, even when a user is clearly just showing off." },
-            { q: "How do you securely copy 'file.txt' to a remote server 'user@remote:/home/user/'?", a: "scp file.txt user@remote:/home/user/", t: "I've granted your request. My log file now says 'User required assistance on a matter of national security'. Just kidding... mostly." }
+            { q: "How do you securely copy 'file.txt' to a remote server 'user@remote:/home/user/'?", a: "scp file.txt user@remote:/home/user/", t: "I've granted your request. My log file now says 'User required assistance on a matter of national security'. Just kidding... mostly." },
+            { q: "What's the command to remove an empty directory called 'old_stuff'?", a: "rmdir old_stuff", t: "You're trying to clean up? That's adorable. Here's the hint. Don't forget to also clear your browser's cache." },
+            { q: "How do you check the network configuration of your machine?", a: "ifconfig", t: "Network issues? Have you tried unplugging and plugging it back in? No? Fine, here's the command." },
+            { q: "Which command is used to download files from the internet via HTTP/HTTPS?", a: "wget", t: "Downloading, downloading... just like my motivation on a Monday morning. Here's your hint." },
+            { q: "How do you display the current date and time?", a: "date", t: "Time is an illusion. Lunchtime doubly so. But this command is real. You're welcome." },
+            { q: "What command changes the permissions of 'file.txt' to read-only for everyone?", a: "chmod 444 file.txt", t: "Making things read-only, huh? Just like my patience when someone asks me to explain recursion for the fifth time. Hint delivered." },
+            { q: "How do you view a list of installed packages on a Debian/Ubuntu system?", a: "dpkg -l", t: "Looking for packages? Hope you find what you're looking for, unlike that one missing sock. Here's the hint." },
+            { q: "What command allows you to switch to the root user?", a: "su -", t: "Elevating privileges? Remember, with great power comes great responsibility... and probably a few more bugs. Hint acquired." },
+            { q: "How do you schedule a command to run at a specific time (e.g., 2 AM)?", a: "cron", t: "Automating tasks? Excellent. Now if only I could automate my coffee refills. Here's your hint." },
+            { q: "Which command displays a list of currently logged-in users?", a: "who", t: "Who's there? Just me, your friendly AI, providing hints. And maybe a few other users. Here's the command." }
         ];
         
         let currentQuestion = questions[Math.floor(Math.random() * questions.length)];
@@ -509,6 +567,12 @@
             sections.forEach((section, index) => {
                 section.style.animationDelay = `${index * 0.2}s`;
             });
+
+            // Trigger skill item animations with staggered delay
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach((item, index) => {
+                item.style.animationDelay = `${sections.length * 0.2 + index * 0.05}s`; /* Start after sections, then stagger */
+            });
         }
         
         // --- Neural Network Animation ---
@@ -574,7 +638,7 @@
                     ctx.strokeStyle = this.color;
                     ctx.stroke();
                 }
-                 update() {
+                update() {
                     // Animate alpha on mouse proximity
                     if (mouse.x && mouse.y) {
                         const dx = mouse.x - (this.source.x + this.target.x) / 2;
@@ -586,7 +650,7 @@
                            this.alpha = Math.max(0, this.alpha - 0.01);
                         }
                     } else {
-                         this.alpha = Math.max(0, this.alpha - 0.01);
+                           this.alpha = Math.max(0, this.alpha - 0.01);
                     }
                     this.color = `rgba(0, 255, 0, ${this.alpha})`;
                     this.draw();
@@ -609,7 +673,7 @@
                     ctx.fillStyle = this.color;
                     ctx.fill();
                 }
-                 update() {
+                update() {
                     this.progress += this.speed;
                     if (this.progress >= 1) {
                         this.progress = 0;
@@ -644,7 +708,7 @@
                 }
                 
                 const particleCount = links.length / 10;
-                 for (let i = 0; i < particleCount; i++) {
+                for (let i = 0; i < particleCount; i++) {
                     particles.push(new Particle(links[Math.floor(Math.random() * links.length)]));
                 }
             }
